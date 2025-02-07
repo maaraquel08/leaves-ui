@@ -13,11 +13,13 @@ export default {
             file: "dist/index.js",
             format: "cjs",
             sourcemap: true,
+            exports: "named",
         },
         {
             file: "dist/index.esm.js",
             format: "esm",
             sourcemap: true,
+            exports: "named",
         },
     ],
     plugins: [
@@ -43,5 +45,5 @@ export default {
         url(),
         terser(), // minify the output
     ],
-    external: ["react", "react-dom", "styled-components"], // explicitly mark React as external
+    external: ["react", "react-dom", "react/jsx-runtime", "styled-components"],
 };
