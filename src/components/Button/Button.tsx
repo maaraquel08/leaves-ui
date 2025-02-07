@@ -2,42 +2,30 @@ import React from "react";
 
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: "primary" | "outline";
-    tone?: "brand" | "danger";
-    size?: "small" | "medium" | "large";
-    disabled?: boolean;
+    variant: "primary" | "outline";
+    tone: "brand" | "danger";
+    size: "small" | "medium" | "large";
     children: React.ReactNode;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-    variant = "primary",
-    tone = "brand",
-    size = "medium",
-    disabled = false,
+export const Button = ({
+    variant,
+    tone,
+    size,
     children,
     ...props
-}) => {
+}: ButtonProps) => {
     const baseStyles =
         "min-w-[36px] rounded-lg font-medium transition-colors enabled:focus-visible:outline-none enabled:focus-visible:ring-2 enabled:focus-visible:ring-offset-2";
 
-    const disabledStyles = "disabled:opacity-50 disabled:cursor-not-allowed";
-
     const variants = {
         primary: {
-            brand: disabled
-                ? "bg-primary text-white"
-                : "bg-primary text-white hover:bg-primary-hover active:bg-primary-pressed",
-            danger: disabled
-                ? "bg-danger text-white"
-                : "bg-danger text-white hover:bg-danger-hover active:bg-danger-pressed",
+            brand: "bg-primary text-white hover:bg-primary-hover active:bg-primary-pressed",
+            danger: "bg-danger text-white hover:bg-danger-hover active:bg-danger-pressed",
         },
         outline: {
-            brand: disabled
-                ? "border border-gray-300 text-primary"
-                : "border border-gray-300 text-primary hover:bg-hover active:bg-pressed",
-            danger: disabled
-                ? "border border-danger text-danger"
-                : "border border-danger text-danger hover:bg-hover active:bg-pressed",
+            brand: "border border-gray-300 text-primary hover:bg-hover active:bg-pressed",
+            danger: "border border-danger text-danger hover:bg-hover active:bg-pressed",
         },
     };
 
@@ -47,20 +35,12 @@ export const Button: React.FC<ButtonProps> = ({
         large: "text-base leading-none px-3 py-2.5",
     };
 
-    const classes = [
-        baseStyles,
-        variants[variant][tone],
-        sizes[size],
-        disabledStyles,
-    ].join(" ");
+    const classes = [baseStyles, variants[variant][tone], sizes[size]].join(
+        " "
+    );
 
     return (
-        <button
-            className={classes}
-            disabled={disabled}
-            aria-disabled={disabled}
-            {...props}
-        >
+        <button className={classes} {...props}>
             {children}
         </button>
     );
