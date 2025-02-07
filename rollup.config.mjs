@@ -30,7 +30,8 @@ export default {
             tsconfig: "./tsconfig.json",
             declaration: true,
             declarationDir: "dist",
-            exclude: ["**/*.test.tsx", "**/*.stories.tsx"],
+            include: ["src/**/*"],
+            exclude: ["node_modules", "**/*.test.tsx", "**/*.stories.tsx"],
         }),
         postcss({
             config: {

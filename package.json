@@ -20,6 +20,7 @@
     "files": [
         "dist"
     ],
+    "typings": "dist/index.d.ts",
     "devDependencies": {
         "@rollup/plugin-commonjs": "^28.0.2",
         "@rollup/plugin-node-resolve": "^16.0.0",
