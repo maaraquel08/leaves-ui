@@ -9,15 +9,14 @@ export interface ButtonProps
     children: React.ReactNode;
 }
 
-export const Button = ({
-    children,
+export const Button: React.FC<ButtonProps> = ({
     variant = "primary",
     tone = "brand",
     size = "medium",
     disabled = false,
-    className = "",
+    children,
     ...props
-}: ButtonProps) => {
+}) => {
     const baseStyles =
         "min-w-[36px] rounded-lg font-medium transition-colors enabled:focus-visible:outline-none enabled:focus-visible:ring-2 enabled:focus-visible:ring-offset-2";
 
@@ -53,7 +52,6 @@ export const Button = ({
         variants[variant][tone],
         sizes[size],
         disabledStyles,
-        className,
     ].join(" ");
 
     return (
